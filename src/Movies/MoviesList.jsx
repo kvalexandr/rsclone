@@ -9,8 +9,9 @@ export default class MoviesList extends Component {
     loading: true
   }
 
-  componentDidMount() {
-    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}`;
+  getMovies = (filters) => {
+    const { sort_by } = filters;
+    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&vote_average.gte=3&sort_by=${sort_by}`;
     fetch(link)
       .then(response => response.json())
       .then(data => {
@@ -19,6 +20,16 @@ export default class MoviesList extends Component {
           loading: false
         });
       });
+  }
+
+  componentDidMount() {
+    this.getMovies(this.props.filters);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.filters.sort_by !== prevProps.filters.sort_by) {
+      this.getMovies(this.props.filters);
+    }
   }
 
   render() {
