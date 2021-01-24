@@ -9,9 +9,9 @@ export default class MoviesList extends Component {
     loading: true
   }
 
-  getMovies = (filters) => {
+  getMovies = (filters, page) => {
     const { sort_by } = filters;
-    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&vote_average.gte=3&sort_by=${sort_by}`;
+    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&vote_average.gte=3&sort_by=${sort_by}&page=${page}`;
     fetch(link)
       .then(response => response.json())
       .then(data => {
@@ -23,18 +23,21 @@ export default class MoviesList extends Component {
   }
 
   componentDidMount() {
-    this.getMovies(this.props.filters);
+    this.getMovies(this.props.filters, this.props.page);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.filters.sort_by !== prevProps.filters.sort_by) {
-      this.getMovies(this.props.filters);
+      this.props.onChangePage(1);
+      this.getMovies(this.props.filters, 1);
+    }
+    if (this.props.page !== prevProps.page) {
+      this.getMovies(this.props.filters, this.props.page);
     }
   }
 
   render() {
     const { movies } = this.state;
-    console.log(movies);
 
     return (
       <Row gutter={[16, 16]}>

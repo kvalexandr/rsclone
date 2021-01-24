@@ -23,6 +23,12 @@ export default class App extends Component {
     });
   }
 
+  onChangePage = page => {
+    this.setState({
+      page
+    });
+  }
+
   render() {
     const { Header, Content, Footer } = Layout;
     const { filters, page } = this.state;
@@ -31,8 +37,17 @@ export default class App extends Component {
       <Layout className="layout">
         <Header style={{ marginBottom: '20px' }}></Header>
         <Content style={{ padding: '0 50px', maxWidth: '1280px', margin: '0 auto' }}>
-          <Filters filters={filters} page={page} onChangeFilters={this.onChangeFilters} />
-          <MoviesList filters={filters} page={page} />
+          <Filters
+            filters={filters}
+            page={page}
+            onChangeFilters={this.onChangeFilters}
+            onChangePage={this.onChangePage}
+          />
+          <MoviesList
+            filters={filters}
+            page={page}
+            onChangePage={this.onChangePage}
+          />
         </Content>
         <Footer></Footer>
       </Layout>

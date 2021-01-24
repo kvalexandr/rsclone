@@ -6,7 +6,7 @@ export default class Filters extends Component {
   render() {
 
     const { Option } = Select;
-    const { filters, onChangeFilters, page } = this.props;
+    const { filters, onChangeFilters, page, onChangePage } = this.props;
 
     return (
       <Form layout="vertical">
@@ -28,8 +28,8 @@ export default class Filters extends Component {
           </Col>
           <Col>
             <Form.Item label=" ">
-              <Button disabled={page === 1}>Назад</Button>&nbsp;
-              <Button>Вперед</Button>
+              <Button onClick={onChangePage.bind(null, page - 1)} disabled={page === 1}>Назад</Button>&nbsp;
+              <Button onClick={onChangePage.bind(null, page + 1)}>Вперед</Button>
             </Form.Item>
           </Col>
         </Row>
