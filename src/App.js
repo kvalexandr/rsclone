@@ -11,7 +11,8 @@ export default class App extends Component {
       sort_by: 'popularity.desc',
       year: '2021'
     },
-    page: 1
+    page: 1,
+    totalPage: 0
   }
 
   onChangeFilters = (value, field) => {
@@ -30,9 +31,16 @@ export default class App extends Component {
     });
   }
 
+  onChangeTotalPage = totalPage => {
+    console.log(totalPage);
+    this.setState({
+      totalPage
+    });
+  }
+
   render() {
     const { Header, Content, Footer } = Layout;
-    const { filters, page } = this.state;
+    const { filters, page, totalPage } = this.state;
 
     return (
       <Layout className="layout">
@@ -41,6 +49,7 @@ export default class App extends Component {
           <Filters
             filters={filters}
             page={page}
+            totalPage={totalPage}
             onChangeFilters={this.onChangeFilters}
             onChangePage={this.onChangePage}
           />
@@ -48,6 +57,7 @@ export default class App extends Component {
             filters={filters}
             page={page}
             onChangePage={this.onChangePage}
+            onChangeTotalPage={this.onChangeTotalPage}
           />
         </Content>
         <Footer></Footer>

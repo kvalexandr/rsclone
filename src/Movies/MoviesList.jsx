@@ -15,6 +15,7 @@ export default class MoviesList extends Component {
     fetch(link)
       .then(response => response.json())
       .then(data => {
+        this.props.onChangeTotalPage(data.total_pages);
         this.setState({
           movies: data.results,
           loading: false
