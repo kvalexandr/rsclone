@@ -10,8 +10,8 @@ export default class MoviesList extends Component {
   }
 
   getMovies = (filters, page) => {
-    const { sort_by } = filters;
-    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&vote_average.gte=3&sort_by=${sort_by}&page=${page}`;
+    const { sort_by, year } = filters;
+    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&vote_average.gte=3&sort_by=${sort_by}&year=${year}&page=${page}&results=2`;
     fetch(link)
       .then(response => response.json())
       .then(data => {
@@ -27,7 +27,7 @@ export default class MoviesList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.filters.sort_by !== prevProps.filters.sort_by) {
+    if (this.props.filters !== prevProps.filters) {
       this.props.onChangePage(1);
       this.getMovies(this.props.filters, 1);
     }

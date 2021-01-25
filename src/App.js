@@ -8,7 +8,8 @@ export default class App extends Component {
 
   state = {
     filters: {
-      sort_by: 'popularity.desc'
+      sort_by: 'popularity.desc',
+      year: '2021'
     },
     page: 1
   }

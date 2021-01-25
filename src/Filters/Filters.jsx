@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button, Row, Col } from 'antd';
 import SortBy from './SortBy';
+import Year from './Year';
 
 export default class Filters extends Component {
 
@@ -13,6 +14,9 @@ export default class Filters extends Component {
         <Row gutter="16">
           <Col>
             <SortBy sort_by={filters.sort_by} onChangeFilters={(e) => onChangeFilters(e.value, 'sort_by')} />
+          </Col>
+          <Col>
+            <Year year={filters.year} onChangeFilters={(e) => onChangeFilters(e.value, 'year')} />
           </Col>
           <Col>
             <Form.Item label=" ">
