@@ -9,13 +9,15 @@ export default class App extends Component {
   state = {
     filters: {
       sort_by: 'popularity.desc',
-      year: '2021'
+      year: '2021',
+      genres: ''
     },
     page: 1,
     totalPage: 0
   }
 
   onChangeFilters = (value, field) => {
+    console.log(value);
     const newFilters = {
       ...this.state.filters,
       [field]: value

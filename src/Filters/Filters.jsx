@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button, Row, Col } from 'antd';
 import SortBy from './SortBy';
 import Year from './Year';
+import Genres from './Genres';
 
 export default class Filters extends Component {
 
@@ -17,6 +18,9 @@ export default class Filters extends Component {
           </Col>
           <Col>
             <Year year={filters.year} onChangeFilters={(e) => onChangeFilters(e.value, 'year')} />
+          </Col>
+          <Col>
+            <Genres genres={filters.genres} onChangeFilters={(e) => onChangeFilters(e.value, 'genres')} />
           </Col>
           <Col>
             <Form.Item label={`Страница ${page} из  ${totalPage}`}>
