@@ -1,69 +1,42 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import MoviesList from './Movies/MoviesList';
-import { Layout } from 'antd';
-import Filters from './Filters/Filters';
+import { Layout, Menu } from 'antd';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import Movies from './pages/Movies';
+import Movie from './pages/Movie';
+import Home from './pages/Home';
 
 export default class App extends Component {
 
-  state = {
-    filters: {
-      sort_by: 'popularity.desc',
-      year: '2021',
-      genres: ''
-    },
-    page: 1,
-    totalPage: 0
-  }
-
-  onChangeFilters = (value, field) => {
-    console.log(value);
-    const newFilters = {
-      ...this.state.filters,
-      [field]: value
-    };
-    this.setState({
-      filters: newFilters
-    });
-  }
-
-  onChangePage = page => {
-    this.setState({
-      page
-    });
-  }
-
-  onChangeTotalPage = totalPage => {
-    console.log(totalPage);
-    this.setState({
-      totalPage
-    });
-  }
-
   render() {
     const { Header, Content, Footer } = Layout;
-    const { filters, page, totalPage } = this.state;
 
     return (
-      <Layout className="layout">
-        <Header style={{ marginBottom: '20px' }}></Header>
-        <Content style={{ padding: '0 50px', maxWidth: '1280px', margin: '0 auto' }}>
-          <Filters
-            filters={filters}
-            page={page}
-            totalPage={totalPage}
-            onChangeFilters={this.onChangeFilters}
-            onChangePage={this.onChangePage}
-          />
-          <MoviesList
-            filters={filters}
-            page={page}
-            onChangePage={this.onChangePage}
-            onChangeTotalPage={this.onChangeTotalPage}
-          />
-        </Content>
-        <Footer></Footer>
-      </Layout>
+      <BrowserRouter>
+        <Layout className="layout">
+          <Header style={{ marginBottom: '20px' }}>
+            <Content style={{ padding: '0 50px', maxWidth: '1280px', margin: '0 auto', display: 'flex' }}>
+              <div className="logo">Кинопоиск</div>
+              <Menu theme="dark" mode="horizontal">
+                <Menu.Item key="1">
+                  <Link to='/'>Главная</Link>
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <Link to='/movies'>Фильмы</Link>
+                </Menu.Item>
+              </Menu>
+            </Content>
+          </Header>
+          <Content style={{ padding: '0 50px', maxWidth: '1280px', margin: '0 auto' }}>
+            <Switch>
+              <Route path='/' component={Home} exact />
+              <Route path='/movies' component={Movies} exact />
+              <Route path='/movies/:number' component={Movie} />
+            </Switch>
+          </Content>
+          <Footer></Footer>
+        </Layout>
+      </BrowserRouter>
     );
   }
 
