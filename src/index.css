@@ -25,3 +25,34 @@ code {
   margin-top: -4px;
   margin-right: 20px;
 }
+
+.adult {
+  margin-left: 10px;
+  display: inline-block;
+}
+
+h1 {
+  margin-bottom: 0.2em;
+}
+
+.vote-average {
+  color: #093;
+  font-size: 32px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.vote-count {
+  color: rgb(110, 110, 110);
+}
+
+.overview {
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.45);
+  margin-bottom: 20px;
+}
+
+.person {
+  margin-top: 20px;
+}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css';
 import { Layout, Menu } from 'antd';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Movies from './pages/Movies';
@@ -15,7 +14,7 @@ export default class App extends Component {
       <BrowserRouter>
         <Layout className="layout">
           <Header style={{ marginBottom: '20px' }}>
-            <Content style={{ padding: '0 50px', maxWidth: '1280px', margin: '0 auto', display: 'flex' }}>
+            <div style={{ padding: '0 50px', maxWidth: '1280px', margin: '0 auto', display: 'flex' }}>
               <div className="logo">Кинопоиск</div>
               <Menu theme="dark" mode="horizontal">
                 <Menu.Item key="1">
@@ -25,14 +24,16 @@ export default class App extends Component {
                   <Link to='/movies'>Фильмы</Link>
                 </Menu.Item>
               </Menu>
-            </Content>
+            </div>
           </Header>
-          <Content style={{ padding: '0 50px', maxWidth: '1280px', margin: '0 auto' }}>
-            <Switch>
-              <Route path='/' component={Home} exact />
-              <Route path='/movies' component={Movies} exact />
-              <Route path='/movies/:number' component={Movie} />
-            </Switch>
+          <Content>
+            <div style={{ padding: '0 50px', maxWidth: '1280px', margin: '0 auto' }}>
+              <Switch>
+                <Route path='/' component={Home} exact />
+                <Route path='/movies' component={Movies} exact />
+                <Route path='/movies/:id' component={Movie} />
+              </Switch>
+            </div>
           </Content>
           <Footer></Footer>
         </Layout>
