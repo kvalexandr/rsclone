@@ -8,7 +8,6 @@ export default class MoviesFavorites extends Component {
   }
 
   getMovie = (id) => {
-    console.log(id);
     const link = `${API_URL}/movie/${id}?api_key=${API_KEY_3}&language=ru-RU`;
     fetch(link)
       .then(response => response.json())
@@ -38,7 +37,7 @@ export default class MoviesFavorites extends Component {
 
     return (
       <>
-        
+
         <MoviesFavoritesList movies={movies} />
       </>
     );
