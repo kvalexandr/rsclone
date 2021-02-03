@@ -60,3 +60,19 @@ h1 {
 .favorites-btn {
   margin: 10px 0;
 }
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+	height: 80px;
+}
+
+.footer-item {
+  margin: 0 20px;
+}
+
+.footer-item  img {
+  width: 80px;
+}

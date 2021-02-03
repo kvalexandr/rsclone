@@ -30,7 +30,7 @@ export default class App extends Component {
               </Menu>
             </div>
           </Header>
-          <Content>
+          <Content style={{ minHeight: 'calc(100vh - 164px)' }}>
             <div style={{ padding: '0 50px', maxWidth: '1280px', margin: '0 auto' }}>
               <Switch>
                 <Route path='/' component={Home} exact />
@@ -40,7 +40,15 @@ export default class App extends Component {
               </Switch>
             </div>
           </Content>
-          <Footer></Footer>
+          <Footer className="footer">
+            <div class="footer-item">@ 2020</div>
+            <div class="footer-item">
+              <a href="https://rs.school/js/"><img src="./rs_school_js.svg" alt="rs.school" /></a>
+            </div>
+            <div class="footer-item">
+              <a href="https://github.com/kvalexandr">kvalexandr</a>
+            </div>
+          </Footer>
         </Layout>
       </BrowserRouter>
     );
