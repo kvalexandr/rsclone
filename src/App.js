@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Movies from './pages/Movies';
 import Movie from './pages/Movie';
 import Home from './pages/Home';
+import MoviesFavorites from './pages/MoviesFavorites';
 
 export default class App extends Component {
 
@@ -23,6 +24,9 @@ export default class App extends Component {
                 <Menu.Item key="2">
                   <Link to='/movies'>Фильмы</Link>
                 </Menu.Item>
+                <Menu.Item key="3">
+                  <Link to='/favorites'>Избранное</Link>
+                </Menu.Item>
               </Menu>
             </div>
           </Header>
@@ -32,6 +36,7 @@ export default class App extends Component {
                 <Route path='/' component={Home} exact />
                 <Route path='/movies' component={Movies} exact />
                 <Route path='/movies/:id' component={Movie} />
+                <Route path='/favorites' component={MoviesFavorites} />
               </Switch>
             </div>
           </Content>

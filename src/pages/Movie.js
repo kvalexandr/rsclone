@@ -6,7 +6,8 @@ export default class Movie extends Component {
 
   state = {
     movie: [],
-    credits: []
+    credits: [],
+    favorites: false
   }
 
   getMovie = (id) => {
@@ -14,9 +15,10 @@ export default class Movie extends Component {
     fetch(link)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        const favorites = this.getFavorites();
         this.setState({
           movie: data,
+          favorites: favorites.includes(data.id),
         });
       });
   }
@@ -26,11 +28,40 @@ export default class Movie extends Component {
     fetch(link)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         this.setState({
           credits: data,
         });
       });
+  }
+
+  getMovieId = () => {
+    return this.state.movie.id;
+  }
+
+  getFavorites = () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    return favorites;
+  }
+
+  addFavorites = (favorites) => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }
+
+  changeFavorites = () => {
+    let favorites = this.getFavorites();
+    let isFavorites = false;
+
+    if (favorites.indexOf(this.getMovieId()) === -1) {
+      favorites.push(this.getMovieId());
+      isFavorites = true;
+    } else {
+      favorites = favorites.filter(id => id !== this.getMovieId());
+    }
+
+    this.addFavorites(favorites);
+    this.setState({
+      favorites: isFavorites
+    });
   }
 
   componentDidMount() {
@@ -39,10 +70,15 @@ export default class Movie extends Component {
   }
 
   render() {
-    const { movie, credits } = this.state;
+    const { movie, credits, favorites } = this.state;
 
     return (
-      <MovieDetails movie={movie} credits={credits} />
+      <MovieDetails
+        favorites={favorites}
+        movie={movie}
+        credits={credits}
+        onChangeFavorites={this.changeFavorites}
+      />
     );
   }
 }

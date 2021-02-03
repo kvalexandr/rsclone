@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Row, Col, Typography, Tag } from 'antd';
+import { Row, Col, Typography, Tag, Button } from 'antd';
+import { HeartOutlined } from '@ant-design/icons';
 
 export default class MoviesDetails extends Component {
 
-
   render() {
-    const { movie, credits } = this.props;
+    const { movie, credits, favorites, onChangeFavorites } = this.props;
     const imagePath = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : 'http://placehold.it/500x750?text=No+Poster';
     const adult = movie.adult ? '18+' : '6+';
 
@@ -37,7 +37,6 @@ export default class MoviesDetails extends Component {
       },
     ];
 
-    console.log(cast);
     const { Title, Text } = Typography;
 
     return (
@@ -52,6 +51,16 @@ export default class MoviesDetails extends Component {
           <div>
             <span className="vote-average">{movie.vote_average}</span>
             <span className="vote-count">({movie.vote_count})</span>
+          </div>
+          <div className="favorites-btn">
+            <Button
+              type={favorites ? 'primary' : 'default'}
+              onClick={onChangeFavorites}
+              danger
+              icon={<HeartOutlined />}
+            >
+              {favorites ? 'В избранном' : 'Добавить в избранное'}
+            </Button>
           </div>
           <div className="overview">
             {movie.overview}

@@ -56,3 +56,7 @@ h1 {
 .person {
   margin-top: 20px;
 }
+
+.favorites-btn {
+  margin: 10px 0;
+}

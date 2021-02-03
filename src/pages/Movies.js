@@ -14,7 +14,6 @@ export default class Movies extends Component {
   }
 
   onChangeFilters = (value, field) => {
-    console.log(value);
     const newFilters = {
       ...this.state.filters,
       [field]: value
@@ -31,7 +30,6 @@ export default class Movies extends Component {
   }
 
   onChangeTotalPage = totalPage => {
-    console.log(totalPage);
     this.setState({
       totalPage
     });
