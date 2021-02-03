@@ -41,11 +41,11 @@ export default class App extends Component {
             </div>
           </Content>
           <Footer className="footer">
-            <div class="footer-item">@ 2020</div>
-            <div class="footer-item">
+            <div className="footer-item">@ 2020</div>
+            <div className="footer-item">
               <a href="https://rs.school/js/"><img src="./rs_school_js.svg" alt="rs.school" /></a>
             </div>
-            <div class="footer-item">
+            <div className="footer-item">
               <a href="https://github.com/kvalexandr">kvalexandr</a>
             </div>
           </Footer>
